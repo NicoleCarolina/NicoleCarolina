@@ -1,0 +1,5 @@
+- 👋 Hi, I’m @NicoleCarolina
+- 👀 I’m interested in the virtual world
+- 🌱 I’m currently learning developer and blockchain
+- 💞️ I’m looking to collaborate on the bit conference and all events can i about the virtual money an developers
+- 📫 can you reach me nicole_fucili@live.com @nicole_cf or Nicole Carolina Fucili at linked in
