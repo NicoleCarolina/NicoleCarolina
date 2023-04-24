@@ -1,0 +1,15 @@
+<!Doctype html>
+
+<Html>
+
+    <meta charset="UFT-8">
+
+    <head>
+        <title>Estética</title>
+
+    </head>
+
+    <body>
+
+    </body>
+</Html>
