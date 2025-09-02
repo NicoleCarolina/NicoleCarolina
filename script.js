@@ -32,3 +32,13 @@ const setHeader = () => {
 setHeader();
 window.addEventListener('scroll', setHeader, { passive: true });
 
+// Image fallbacks for missing logos
+document.querySelectorAll('img[data-fallback]').forEach((img) => {
+  img.addEventListener('error', () => {
+    const fallback = img.getAttribute('data-fallback');
+    if (fallback && img.src !== location.origin + fallback) {
+      img.src = fallback;
+    }
+  }, { once: true });
+});
+
