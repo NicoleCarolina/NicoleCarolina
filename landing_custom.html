@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoConnect - Comunidad Web3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.1) 0%, rgba(0, 0, 0, 0.8) 70%);
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #9333ea;
+            text-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+        }
+
+        .main-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -80%);
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+        }
+
+        .main-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(217, 70, 239, 0.3));
+        }
+
+        .whatsapp-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #d946ef, #9333ea);
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(217, 70, 239, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(217, 70, 239, 0.4);
+            border-color: #d946ef;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #d946ef, #9333ea, #7c3aed);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #a855f7;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(147, 51, 234, 0.1);
+        }
+
+        .section h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #d946ef;
+            text-shadow: 0 0 10px rgba(217, 70, 239, 0.3);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .about-card {
+            background: rgba(147, 51, 234, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(217, 70, 239, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            border-color: #d946ef;
+            box-shadow: 0 20px 40px rgba(217, 70, 239, 0.2);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            color: #d946ef;
+            margin-bottom: 15px;
+        }
+
+        /* Events Section */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(217, 70, 239, 0.05));
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(217, 70, 239, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .event-card:hover::before {
+            opacity: 1;
+        }
+
+        .event-card:hover {
+            border-color: #d946ef;
+            transform: scale(1.05);
+        }
+
+        .event-card h3 {
+            font-size: 1.8rem;
+            color: #a855f7;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .partners-column h2 {
+            font-size: 2rem;
+            color: #d946ef;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .logos-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .comunidades-logos {
+            grid-template-columns: 1fr;
+        }
+
+        .partners-logos {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .logo-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            transition: all 0.3s ease;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-item:hover {
+            background: rgba(147, 51, 234, 0.1);
+            border-color: #d946ef;
+            transform: translateY(-5px);
+        }
+
+        .logo-placeholder {
+            width: 120px;
+            height: 60px;
+            background: linear-gradient(45deg, #d946ef, #9333ea);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .partner-logo {
+            max-width: 120px;
+            max-height: 60px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 50px 0;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(147, 51, 234, 0.3);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .footer-item {
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(147, 51, 234, 0.1);
+            border: 1px solid rgba(217, 70, 239, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .footer-item:hover {
+            color: #d946ef;
+            border-color: #d946ef;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content h2 { font-size: 1.5rem; }
+            .logo-container { font-size: 20px; }
+            .whatsapp-btn { 
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            .partners-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .partners-logos {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* Floating Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+    <meta name="color-scheme" content="dark">
+    <link rel="icon" href="/workspace/assets/cryptoconnect-logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style> body{font-family: Inter, Arial, sans-serif;} </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <section class="header">
+        <div class="logo-container floating">LOGOC3</div>
+        <a href="https://chat.whatsapp.com/DgSPoAcb1nGFcn7dlVxVW9?mode=ems_copy_c" 
+           class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+            💬 WhatsApp
+        </a>
+        
+        <div class="main-logo">
+            <img src="/workspace/assets/cryptoconnect-logo.svg" alt="CryptoConnect Logo">
+        </div>
+        
+        <div class="hero-content">
+            <h1>CRYPTOCONNECT</h1>
+            <h2>Comunidad Web3</h2>
+            <p class="hero-description">
+                Conectamos a expertos y curiosos del mundo Web3
+            </p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <h1>SOBRE NOSOTROS</h1>
+            <div class="about-grid">
+                <div class="about-card floating">
+                    <h3>🌐 Comunidad</h3>
+                    <p>Construimos una red sólida de profesionales y entusiastas del ecosistema blockchain</p>
+                </div>
+                <div class="about-card floating">
+                    <h3>🚀 Tecnología</h3>
+                    <p>Exploramos las últimas innovaciones en Web3, DeFi, NFTs y tecnologías emergentes</p>
+                </div>
+                <div class="about-card floating">
+                    <h3>🎯 Eventos</h3>
+                    <p>Organizamos encuentros únicos para compartir conocimiento y crear conexiones valiosas</p>
+                </div>
+                <div class="about-card floating">
+                    <h3>₿ Crypto</h3>
+                    <p>Analizamos mercados, proyectos y tendencias del mundo de las criptomonedas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="section">
+        <div class="container">
+            <h1>EVENTOS</h1>
+            <div class="events-grid">
+                <div class="event-card">
+                    <h3>📚 Workshops</h3>
+                    <p>Talleres prácticos donde aprender haciendo. Desde desarrollo en blockchain hasta estrategias DeFi avanzadas.</p>
+                </div>
+                <div class="event-card">
+                    <h3>🤝 Meetups</h3>
+                    <p>Encuentros regulares para networking, charlas técnicas y debates sobre el futuro de Web3.</p>
+                </div>
+                <div class="event-card">
+                    <h3>🎪 Congresos</h3>
+                    <p>Grandes eventos con speakers internacionales, demos de proyectos y oportunidades de inversión.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="section">
+        <div class="container">
+            <h1>CON QUIENES TRABAJAMOS</h1>
+            <div class="partners-section">
+                <div class="partners-column">
+                    <h2>Comunidades</h2>
+                    <div class="logos-grid comunidades-logos">
+                        <div class="logo-item">
+                            <img src="/workspace/images/la_familia.png" alt="La Familia" class="partner-logo" onerror="this.parentElement.innerHTML='<div class=\"logo-placeholder\">LA_FAMILIA.PNG</div>'">
+                        </div>
+                        <div class="logo-item">
+                            <img src="/workspace/images/cryptosabadell.png" alt="Crypto Sabadell" class="partner-logo" onerror="this.parentElement.innerHTML='<div class=\"logo-placeholder\">CRYPTOSABADELL.PNG</div>'">
+                        </div>
+                        <div class="logo-item">
+                            <img src="/workspace/images/culturac3.png" alt="Cultura C3" class="partner-logo" onerror="this.parentElement.innerHTML='<div class=\"logo-placeholder\">CULTURA C3</div>'">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="partners-column">
+                    <h2>Partners</h2>
+                    <div class="logos-grid partners-logos">
+                        <div class="logo-item">
+                            <img src="/workspace/images/rootstock.png" alt="Rootstock" class="partner-logo" onerror="this.parentElement.innerHTML='<div class=\"logo-placeholder\">ROOTSTOCK</div>'">
+                        </div>
+                        <div class="logo-item">
+                            <img src="/workspace/images/solana.png" alt="Solana" class="partner-logo" onerror="this.parentElement.innerHTML='<div class=\"logo-placeholder\">SOLANA</div>'">
+                        </div>
+                        <div class="logo-item">
+                            <img src="/workspace/images/polkadot.png" alt="Polkadot" class="partner-logo" onerror="this.parentElement.innerHTML='<div class=\"logo-placeholder\">POLKADOT</div>'">
+                        </div>
+                        <div class="logo-item">
+                            <img src="/workspace/images/intmax.png" alt="IntMax" class="partner-logo" onerror="this.parentElement.innerHTML='<div class=\"logo-placeholder\">INTMAX</div>'">
+                        </div>
+                        <div class="logo-item">
+                            <img src="/workspace/images/rectime.png" alt="Rectime" class="partner-logo" onerror="this.parentElement.innerHTML='<div class=\"logo-placeholder\">RECTIME</div>'">
+                        </div>
+                        <div class="logo-item">
+                            <img src="/workspace/images/moonlorian.png" alt="Moonlorian" class="partner-logo" onerror="this.parentElement.innerHTML='<div class=\"logo-placeholder\">MOONLORIAN</div>'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="https://twitter.com/cryptoconnectSP" class="footer-item" target="_blank" rel="noopener noreferrer">
+                    🐦 @cryptoconnectSP
+                </a>
+                <a href="mailto:cryptoconnectsp@outlook.es" class="footer-item">
+                    📧 cryptoconnectsp@outlook.es
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const sel = this.getAttribute('href');
+                if (sel && sel.length > 1) {
+                  document.querySelector(sel)?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Parallax-like subtle translate
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.header');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        }, { passive: true });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.about-card, .event-card, .logo-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // WhatsApp button click tracking
+        document.querySelector('.whatsapp-btn').addEventListener('click', function() {
+            console.log('WhatsApp button clicked');
+        });
+
+        // Dynamic button hover effects
+        const buttons = document.querySelectorAll('.whatsapp-btn, .footer-item');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
+
